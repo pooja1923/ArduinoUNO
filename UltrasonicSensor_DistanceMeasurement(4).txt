@@ -1,0 +1,30 @@
+#include<LiquidCrystal.h>
+
+LiquidCrystal lcd(8,9,10,11,12,13);
+
+const int irPin=7;
+int irValue;
+
+void setup(){
+pinMode(irPin, INPUT);
+lcd.begin(16,2);
+lcd.print("IR Sensor Ready");
+delay(2000);
+lcd.clear();
+}
+
+void loop(){
+irValue = digitalRead(irPin);
+
+lcd.setCursor(0,0);
+lcd.print("IR Sensor:");
+
+lcd.setCursor(0,1);
+if(irValue == LOW){
+lcd.print("Object Detected");
+}
+else{
+lcd.print("No Object");
+}
+delay(200);
+}
